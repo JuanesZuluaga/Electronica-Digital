@@ -1,19 +1,27 @@
-#define sen A12
+//ubidots 
+//cont(Porcentaje de humedad)
+//bomb(activar la bomba)
+//bombilla(iluminar y dar calor al terrario)
+
+
+
+#define sen 2
+#define bomb 32
 float vSen = 0;
 int cont = 0;
 
-void int2bcd(unsigned int num)  //Función que toma un numero entero y lo convierte a BCD
-{
-  
-}
 
 void setup() {
+
+  pinMode(bomb, OUTPUT);
+  digitalWrite(bomb, HIGH);
   Serial.begin(9600);
 }
 
 void loop() {
-  int2bcd(cont);
+  digitalWrite(bomb, HIGH);
   vSen = analogRead(sen);
-  cont = (vSen / 4092) * 10;
+  cont = 100-((vSen / 4092) * 100);
   Serial.println(cont);
+  delay(100);
 }
