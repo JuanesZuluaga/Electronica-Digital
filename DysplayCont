@@ -1,0 +1,32 @@
+#define dec 30
+#define uni 31
+int i, decenas, unidades;
+byte display[10]={63,6,91,79,102,109,125,7,127,111};
+
+void setup() {
+  DDRL=255;
+  pinMode(30, OUTPUT);
+  pinMode(31, OUTPUT);
+}
+
+void mostrar(){
+  decenas= i/10;
+  unidades=i%10;
+  
+  PORTL=display[decenas];
+  digitalWrite(dec,1);
+  delay(1);
+  digitalWrite(dec,0);
+  PORTL=display[unidades];
+  digitalWrite(uni,1);
+  delay(1);
+  digitalWrite(uni,0);
+}
+
+void loop() {
+  for(i = 0; i<100; i++){
+    for(int j = 0; j<100; j++){
+      mostrar();
+    }
+  }
+}
